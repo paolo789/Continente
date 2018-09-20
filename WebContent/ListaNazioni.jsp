@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:forEach items="${nazioni}" var="nazione">
-    <p><a href ="listacitta?nation=${nazione}">${nazione}</a></p>
+    <p><a href ="listacitta?nation=${nazione}">${nazione}</a></p> <!--  mostrare anche popolazione e passare come valore il code (mostrando però sempre a video il nome)-->
 </c:forEach>
 </body>
 </html>

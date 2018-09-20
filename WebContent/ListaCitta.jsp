@@ -9,7 +9,7 @@
 </head>
 <body>
 <c:forEach items="${citta}" var="city">
-    <p>${city}</p>
+    <p>${city}</p> <!--  mostrare anche popolazione -->
 </c:forEach>
 </body>
 </html>

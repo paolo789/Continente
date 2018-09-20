@@ -30,7 +30,7 @@ public class NazioneServlet extends HttpServlet {
 		
 		String continent =request.getParameter("Cont");
 		List<String> n = new ArrayList();
-		INationDao nd =(INationDao) new NationDaoImpl();
+		INationDao nd =(INationDao) new NationDaoImpl(); //TODO implementare interfaccia
 		n=nd.getNation(continent);
 		
 		request.setAttribute("nazioni", n);

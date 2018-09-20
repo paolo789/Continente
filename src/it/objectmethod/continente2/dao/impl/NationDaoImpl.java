@@ -15,7 +15,7 @@ public class NationDaoImpl implements INationDao {
 		List<String> v = new ArrayList();
 		try {
 			Connection conn = ConnectionFactory.getConnection();
-			String sql ="SELECT continent FROM world.country GROUP BY continent";
+			String sql ="SELECT continent FROM world.country GROUP BY continent"; //TODO meglio SELECT distinct continent from world.country
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()){
