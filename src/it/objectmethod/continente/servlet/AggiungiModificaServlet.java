@@ -24,35 +24,35 @@ import it.objectmethod.continente.domain.CityBean;;
 @WebServlet("/aggiungimodifica")
 public class AggiungiModificaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	  
-    
-    
-        
+
+
+
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("identd")==null) {
-		String citta =request.getParameter("citta");
-		String countrycode =request.getParameter("countrycode");
-		String district =request.getParameter("district");
-		int population =Integer.parseInt(request.getParameter("population"));
-		IAggiungiDao ad = new AggiungiDaoImpl();
-		ad.insertCity(citta, countrycode, district, population);
-		
-		//request.setAttribute("listacitta", v);
-		request.getRequestDispatcher("listacitta?nation="+countrycode).forward(request, response);
-		
-		
+			String citta =request.getParameter("citta");
+			String countrycode =request.getParameter("countrycode");
+			String district =request.getParameter("district");
+			int population =Integer.parseInt(request.getParameter("population"));
+			IAggiungiDao ad = new AggiungiDaoImpl();
+			ad.insertCity(citta, countrycode, district, population);
+
+			//request.setAttribute("listacitta", v);
+			request.getRequestDispatcher("listacitta?nation="+countrycode).forward(request, response);
+
+
 		} //request.getparameter
 		else {
 			int ident= Integer.parseInt(request.getParameter("identd"));
 			List<CityBean> v = new ArrayList();
 			IModificaDao md=new ModificaDaoImpl();
 			v=md.selezionaCitta(ident);
-			
+
 			request.setAttribute("citta",v );
 			request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
 		}
 	}
-	
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

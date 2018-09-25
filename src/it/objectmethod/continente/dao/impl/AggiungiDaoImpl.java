@@ -22,6 +22,10 @@ public class AggiungiDaoImpl implements IAggiungiDao {
 				System.out.println(id);
 				id++;
 				sql="insert into city values("+id+",'"+citta+"','"+countrycode+"','"+district+"',"+population+")";
+				/*
+				 * TODO Non settare l'id e usare i prapared statements, non comporre la stringa altrimenti si creano
+				 * problemi di SQLInjection
+				 */
 				stmt = conn.prepareStatement(sql);
 				stmt.executeUpdate(sql);
 			}
