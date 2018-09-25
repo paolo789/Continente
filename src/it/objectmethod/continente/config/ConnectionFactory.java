@@ -1,4 +1,4 @@
-package it.objectmethod.continente2.config;
+package it.objectmethod.continente.config;
 
 import java.sql.Connection;
 

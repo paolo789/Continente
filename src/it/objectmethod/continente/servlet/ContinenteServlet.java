@@ -1,4 +1,4 @@
-package it.objectmethod.continente2.servlet;
+package it.objectmethod.continente.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,8 +9,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.objectmethod.continente2.dao.INationDao;
-import it.objectmethod.continente2.dao.impl.NationDaoImpl;
+import it.objectmethod.continente.dao.INationDao;
+import it.objectmethod.continente.dao.impl.NationDaoImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -8,8 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<table border=1>
+<th>Nazione</th><th>Popolazione</th>
 <c:forEach items="${nazioni}" var="nazione">
-    <p><a href ="listacitta?nation=${nazione}">${nazione}</a></p> <!--  mostrare anche popolazione e passare come valore il code (mostrando però sempre a video il nome)-->
+    <tr><td><a href ="listacitta?nation=${nazione.code}">${nazione.name}</a></td><td>${nazione.population}</td></tr> <!--  mostrare anche popolazione e passare come valore il code (mostrando però sempre a video il nome)-->
 </c:forEach>
+</table>
+<br>
+<a href="listacontinenti">Back</a>
 </body>
 </html>

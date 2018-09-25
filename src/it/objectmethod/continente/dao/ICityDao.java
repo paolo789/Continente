@@ -1,9 +1,12 @@
-package it.objectmethod.continente2.dao;
+package it.objectmethod.continente.dao;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import it.objectmethod.continente.domain.CityBean;
 
 public interface ICityDao {
-	public ArrayList<String> getCity(String nation); 
+	public List<CityBean> getCitiesByNations(String nation); 
 	
 	/*
 	 * TODO ritornare una List (interfaccia) e non arraylist e soprattutto
