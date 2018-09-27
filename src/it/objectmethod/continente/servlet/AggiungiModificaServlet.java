@@ -33,15 +33,16 @@ public class AggiungiModificaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		INationDao iNationDao=new NationDaoImpl();
 		List<CountryBean> countriesList=iNationDao.listaCountry();
+
 		CityBean citta = new CityBean();
 		int ident = 0;
 		
 		try {
 			ident = Integer.parseInt(request.getParameter("identd"));
 		} catch (NumberFormatException e) {
-			e.printStackTrace();
 			ident = 0;
 		}
+
 		
 		if (ident != 0) {
 			ICityDao iCityDao = new CityDaoImpl();
@@ -53,10 +54,6 @@ public class AggiungiModificaServlet extends HttpServlet {
 		request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
 	}
 
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

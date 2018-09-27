@@ -27,10 +27,10 @@ public class CancellaServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int ident= Integer.parseInt(request.getParameter("identd"));
-		String countrycode=request.getParameter("countrycode");
+		String countryCode=request.getParameter("countrycode");
 		ICityDao cd = new CityDaoImpl();
 		cd.cancellaCitta(ident);
-		request.getRequestDispatcher("listacitta?nation="+countrycode).forward(request, response);
+		request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response);
 	}
 
 	/**

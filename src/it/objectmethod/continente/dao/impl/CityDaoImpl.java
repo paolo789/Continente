@@ -77,16 +77,16 @@ public class CityDaoImpl implements ICityDao {
 		return cb;
 	}
 	
-	public void modificaCitta(String citta,String countryCode,String district,int population,int id) {
+	public void modificaCitta(CityBean cb) {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			String sql = "update city set name=?, countrycode=?, district=?, population=? where ID=?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, citta);
-			stmt.setString(2, countryCode);
-			stmt.setString(3, district);
-			stmt.setInt(4, population);
-			stmt.setInt(5, id);
+			stmt.setString(1, cb.getName());
+			stmt.setString(2, cb.getCountryCode());
+			stmt.setString(3, cb.getDistrict());
+			stmt.setInt(4, cb.getPopulation());
+			stmt.setInt(5, cb.getId());
 			stmt.executeUpdate();
 			stmt.close();
 			conn.close();
@@ -95,16 +95,16 @@ public class CityDaoImpl implements ICityDao {
 		}
 	}
 	
-	public void insertCity(String citta, String countryCode, String district, int population) {
+	public void insertCity(CityBean cb) {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			
 			String sql="insert into city (Name, CountryCode, District, Population) values (?,?,?,?)";
 			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setString(1, citta);
-			stmt.setString(2, countryCode);
-			stmt.setString(3, district);
-			stmt.setInt(4, population);
+			stmt.setString(1, cb.getName());
+			stmt.setString(2, cb.getCountryCode());
+			stmt.setString(3, cb.getDistrict());
+			stmt.setInt(4, cb.getPopulation());
 			stmt.executeUpdate();
 				/*
 				 * TODO Non settare l'id e usare i prapared statements, non comporre la stringa altrimenti si creano
