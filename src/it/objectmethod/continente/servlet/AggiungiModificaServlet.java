@@ -31,26 +31,26 @@ public class AggiungiModificaServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("identd")==null) {
-	//		List<CityBean> b = new ArrayList();
-			INationDao iNationDao=new NationDaoImpl();
-			List<CountryBean> countriesList=iNationDao.listaCountry();
-			request.setAttribute("countries", countriesList);
-			request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
-		} //request.getparameter
-		else {
-			int ident= Integer.parseInt(request.getParameter("identd"));
-			//List<CityBean> v = new ArrayList();
-			//List<CityBean> b = new ArrayList();
-			INationDao iNationDao=new NationDaoImpl();
-			ICityDao iCityDao = new CityDaoImpl();
-			CityBean citta=iCityDao.selezionaCitta(ident);
-			List<CountryBean> countriesList=iNationDao.listaCountry();
-
-			request.setAttribute("countries", countriesList);
-			request.setAttribute("citta",citta );
-			request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
+		INationDao iNationDao=new NationDaoImpl();
+		List<CountryBean> countriesList=iNationDao.listaCountry();
+		CityBean citta = new CityBean();
+		int ident = 0;
+		
+		try {
+			ident = Integer.parseInt(request.getParameter("identd"));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			ident = 0;
 		}
+		
+		if (ident != 0) {
+			ICityDao iCityDao = new CityDaoImpl();
+			citta = iCityDao.selezionaCitta(ident);
+			request.setAttribute("citta",citta );
+		}
+		
+		request.setAttribute("countries", countriesList);
+		request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
 	}
 
 

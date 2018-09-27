@@ -34,12 +34,13 @@ public class ModificaServlet extends HttpServlet {
 			int id= Integer.parseInt(request.getParameter("id"));
 			ICityDao md=new CityDaoImpl();
 			md.modificaCitta(citta,countryCode,district,population, id);
-			request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response);
+			request.setAttribute("nationCode", countryCode); //TODO meglio agire così
+			request.getRequestDispatcher("listacitta").forward(request, response);
 		}
 		else {
 			ICityDao md=new CityDaoImpl();
 			md.insertCity(citta, countryCode, district, population);
-			request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response);
+			request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response); //TODO piuttosto che così
 		}
 	}
 	

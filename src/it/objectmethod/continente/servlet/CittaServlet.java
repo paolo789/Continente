@@ -28,6 +28,9 @@ public class CittaServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nation =request.getParameter("nation");
+		if(nation == null) {
+			nation = (String) request.getAttribute("nationCode");
+		}
 		List<CityBean> v = new ArrayList();
 		ICityDao cd = new CityDaoImpl();
 		v=cd.getCitiesByNations(nation);
