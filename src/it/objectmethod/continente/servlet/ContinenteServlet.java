@@ -26,18 +26,7 @@ public class ContinenteServlet extends HttpServlet {
 		List<String> v = new ArrayList();
 		INationDao cd = new NationDaoImpl();
 		v=cd.getContinent();
-		
-		
 		request.setAttribute("continenti", v);
-		request.getRequestDispatcher("ListaContinenti.jsp").forward(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getRequestDispatcher("ListaContinenti.jsp").forward(request, response);		
 	}
 }

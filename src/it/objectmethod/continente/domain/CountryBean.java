@@ -1,34 +1,34 @@
 package it.objectmethod.continente.domain;
 
 public class CountryBean {
-	private String Code;
-	private String Name;
-	private String Continent;
-	private int Population;
+	private String code;
+	private String name;
+	private String continent;
+	private int population;
 	
 	
 	public String getCode() {
-		return Code;
+		return code;
 	}
 	public void setCode(String code) {
-		Code = code;
+		this.code = code;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public String getContinent() {
-		return Continent;
+		return continent;
 	}
 	public void setContinent(String continent) {
-		Continent = continent;
+		this.continent = continent;
 	}
 	public int getPopulation() {
-		return Population;
+		return population;
 	}
 	public void setPopulation(int population) {
-		Population = population;
+		this.population = population;
 	}
 }

@@ -8,6 +8,7 @@ import java.util.List;
 
 import it.objectmethod.continente.config.ConnectionFactory;
 import it.objectmethod.continente.dao.INationDao;
+import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.CountryBean;
 
 
@@ -63,4 +64,30 @@ public class NationDaoImpl implements INationDao {
 
 		return v;
 	}
+
+	@Override
+	public List<CountryBean> listaCountry() {
+		List<CountryBean> v= new ArrayList<CountryBean>();
+		try {
+			Connection conn = ConnectionFactory.getConnection();
+			String sql;
+			sql = "select distinct code,name from country";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()){
+				String countryCode= rs.getString("code");
+				String name= rs.getString("name");
+				CountryBean ccb = new CountryBean();
+				ccb.setCode(countryCode);
+				ccb.setName(name);
+				v.add(ccb);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return v;
+		}
 }

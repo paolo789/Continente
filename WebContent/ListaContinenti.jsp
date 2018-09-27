@@ -8,7 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+Cerca città
+<form action="ricercacitta">
+<input type="text" name="cercacitta"><input type="submit">
+</form>
+<br>
 <c:forEach items="${continenti}" var="continente">
     <p><a href ="listanazioni?Cont=${continente}">${continente}</a></p>
 </c:forEach>

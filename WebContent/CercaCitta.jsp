@@ -13,15 +13,25 @@ Cerca città
 <input type="text" name="cercacitta"><input type="submit">
 </form>
 <br>
+Aggiungi Città
+<br>
+<form action="aggiungimodifica">
+<input type="submit" name="aggiungi" value="aggiungi citta">
+</form>
+<br>
 <table border=1>
 <tr>
-<th>citta</th><th>cancella</th><th>modifica</th>
+<th>citta</th><th>population</th><th>cancella</th><th>modifica</th>
+
 </tr>
 <c:forEach items="${listacitta}" var="citta">
 
 <tr>
 	<td>
     <p>${citta.name}</p>
+	</td>
+	<td>
+	<p>${citta.population }
 	</td>
 	<td>
 	<form action=cancella>
@@ -40,14 +50,6 @@ Cerca città
 </td>
 </tr>
 </table>
-<br><br>
-Aggiungi Città
-<form action="aggiungimodifica">
-<input type="text" name="citta" placeholder="nome citta">
-<input type="text" name="countrycode" placeholder="country code">
-<input type="text" name="district" placeholder="district">
-<input type="number" name="population" placeholder="population">
-<input type="submit" value="Inserisci citta">
-</form>
+<br><a href="listacontinenti">Back</a><br>
 </body>
 </html>

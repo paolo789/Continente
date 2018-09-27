@@ -15,11 +15,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.objectmethod.continente.dao.IAggiungiDao;
-import it.objectmethod.continente.dao.IModificaDao;
-import it.objectmethod.continente.dao.impl.AggiungiDaoImpl;
-import it.objectmethod.continente.dao.impl.ModificaDaoImpl;
-import it.objectmethod.continente.domain.CityBean;;
+
+import it.objectmethod.continente.dao.ICityDao;
+import it.objectmethod.continente.dao.INationDao;
+import it.objectmethod.continente.dao.impl.CityDaoImpl;
+import it.objectmethod.continente.dao.impl.NationDaoImpl;
+import it.objectmethod.continente.domain.CityBean;
+import it.objectmethod.continente.domain.CountryBean;;
 
 @WebServlet("/aggiungimodifica")
 public class AggiungiModificaServlet extends HttpServlet {
@@ -30,25 +32,23 @@ public class AggiungiModificaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (request.getParameter("identd")==null) {
-			String citta =request.getParameter("citta");
-			String countrycode =request.getParameter("countrycode");
-			String district =request.getParameter("district");
-			int population =Integer.parseInt(request.getParameter("population"));
-			IAggiungiDao ad = new AggiungiDaoImpl();
-			ad.insertCity(citta, countrycode, district, population);
-
-			//request.setAttribute("listacitta", v);
-			request.getRequestDispatcher("listacitta?nation="+countrycode).forward(request, response);
-
-
+	//		List<CityBean> b = new ArrayList();
+			INationDao iNationDao=new NationDaoImpl();
+			List<CountryBean> countriesList=iNationDao.listaCountry();
+			request.setAttribute("countries", countriesList);
+			request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
 		} //request.getparameter
 		else {
 			int ident= Integer.parseInt(request.getParameter("identd"));
-			List<CityBean> v = new ArrayList();
-			IModificaDao md=new ModificaDaoImpl();
-			v=md.selezionaCitta(ident);
+			//List<CityBean> v = new ArrayList();
+			//List<CityBean> b = new ArrayList();
+			INationDao iNationDao=new NationDaoImpl();
+			ICityDao iCityDao = new CityDaoImpl();
+			CityBean citta=iCityDao.selezionaCitta(ident);
+			List<CountryBean> countriesList=iNationDao.listaCountry();
 
-			request.setAttribute("citta",v );
+			request.setAttribute("countries", countriesList);
+			request.setAttribute("citta",citta );
 			request.getRequestDispatcher("CercaCittaModifica.jsp").forward(request, response);
 		}
 	}

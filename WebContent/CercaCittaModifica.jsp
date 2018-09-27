@@ -8,16 +8,33 @@
 <title>Modifica</title>
 </head>
 <body>
-Modifica Città<br>
-<form action="modifica">
-<c:forEach items="${citta}" var="city">
-<input type="text" name="nomecitta" value=${city.name }>
-<input type="text" name="countrycode" value=${city.countryCode }>
-<input type="text" name="district" value=${city.district }>
-<input type="text" name="population" value=${city.population }>
-<input type="hidden" name="id" value=${city.id }><input type="submit" name="modify"> 
-</c:forEach>
-</form>
+<br>
 
+<form action="modifica">
+<c:if test="${citta != null}">
+Modifica Città<br>
+<input type="text" name="nomecitta" value=${citta.name }>
+  <select name="country">
+    <c:forEach items="${countries}" var="country">
+        <option value="${country.code}" ${country.code == citta.countryCode ? 'selected' : ''}>${country.name}</option>
+    </c:forEach>
+</select>
+<input type="text" name="district" value=${citta.district }>
+<input type="text" name="population" value=${citta.population }>
+<input type="hidden" name="id" value=${citta.id }><input type="submit" name="modify"> 
+</c:if>
+<c:if test="${citta == null}">
+Aggiungi Città<br>
+<input type="text" name="nomecitta">
+<select name="country">
+    <c:forEach items="${countries}" var="country">
+        <option value="${country.code}" >${country.name}</option>
+    </c:forEach>
+</select>
+<input type="text" name="district">
+<input type="text" name="population">
+<input type="submit" name="modify">
+</c:if>
+</form>
 </body>
 </html>

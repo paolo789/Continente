@@ -3,12 +3,13 @@ package it.objectmethod.continente.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.CountryBean;
 
 public interface INationDao {
 	public List<String> getContinent();
 	public List<CountryBean> getNationsByContinent(String continent);
-	
+	public List<CountryBean> listaCountry();
 	/*
 	 * TODO ritornare una List (interfaccia) e non arraylist e soprattutto
 	 *  immagazzinare le informazioni relative alla country in un opportuno bean

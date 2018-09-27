@@ -15,23 +15,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.objectmethod.continente.dao.ICercaDao;
-import it.objectmethod.continente.dao.impl.CercaDaoImpl;
+
+import it.objectmethod.continente.dao.ICityDao;
+
+import it.objectmethod.continente.dao.impl.CityDaoImpl;
 import it.objectmethod.continente.domain.*;
 
 @WebServlet("/ricercacitta")
 public class CercaCittaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/world";   
-	static final String USER = "root";
-	static final String PASS = "root";   
+	  
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cercaCitta =request.getParameter("cercacitta");
 		List<CityBean> v= new ArrayList();
-		ICercaDao ccd=new CercaDaoImpl();
+		ICityDao ccd=new CityDaoImpl();
 		v=ccd.cercaCitta(cercaCitta);
 		request.setAttribute("listacitta", v);
 		request.getRequestDispatcher("CercaCitta.jsp").forward(request, response);

@@ -32,19 +32,10 @@ public class NazioneServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String continent =request.getParameter("Cont");
 		List<CountryBean> n = new ArrayList();
-		INationDao nd = new NationDaoImpl(); //TODO implementare interfaccia
+		INationDao nd = new NationDaoImpl();
 		n=nd.getNationsByContinent(continent);
-		
 		request.setAttribute("nazioni", n);
 		session.setAttribute("cont", continent);
 		request.getRequestDispatcher("ListaNazioni.jsp").forward(request, response);
 	}
-	
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -33,14 +33,6 @@ public class CittaServlet extends HttpServlet {
 		v=cd.getCitiesByNations(nation);
 		request.setAttribute("citta", v);
 		request.setAttribute("nation",nation);
-		
 		request.getRequestDispatcher("ListaCitta.jsp").forward(request, response);
 	}
-
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

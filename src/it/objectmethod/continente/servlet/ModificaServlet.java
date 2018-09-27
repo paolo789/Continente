@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.objectmethod.continente.dao.IModificaDao;
-import it.objectmethod.continente.dao.impl.ModificaDaoImpl;
+import it.objectmethod.continente.dao.ICityDao;
+
+import it.objectmethod.continente.dao.impl.CityDaoImpl;
+
 
 @WebServlet("/modifica")
 public class ModificaServlet extends HttpServlet {
@@ -25,13 +27,20 @@ public class ModificaServlet extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String citta= request.getParameter("nomecitta");
-		int id= Integer.parseInt(request.getParameter("id"));
-		String countrycode=request.getParameter("countrycode");
-		String district=request.getParameter("District");
+		String countryCode=request.getParameter("country");
+		String district=request.getParameter("district");
 		int population=Integer.parseInt(request.getParameter("population"));
-		IModificaDao md=new ModificaDaoImpl();
-		md.modificaCitta(citta,countrycode,district,population, id);
-		request.getRequestDispatcher("listacitta?nation="+countrycode).forward(request, response);
+		if (request.getParameter("id")!=null) {
+			int id= Integer.parseInt(request.getParameter("id"));
+			ICityDao md=new CityDaoImpl();
+			md.modificaCitta(citta,countryCode,district,population, id);
+			request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response);
+		}
+		else {
+			ICityDao md=new CityDaoImpl();
+			md.insertCity(citta, countryCode, district, population);
+			request.getRequestDispatcher("listacitta?nation="+countryCode).forward(request, response);
+		}
 	}
 	
 

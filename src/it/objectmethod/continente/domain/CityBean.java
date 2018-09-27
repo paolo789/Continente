@@ -2,10 +2,10 @@ package it.objectmethod.continente.domain;
 
 public class CityBean {
 	private int id;
-	private String Name;
-	private String CountryCode;
-	private String District;
-	private int Population;
+	private String name;
+	private String countryCode;
+	private String district;
+	private int population;
 	
 	
 	public int getId() {
@@ -15,27 +15,27 @@ public class CityBean {
 		this.id = id;
 	}
 	public String getName() {
-		return Name;
+		return name;
 	}
-	public void setName(String Name) {
-		this.Name = Name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getCountryCode() {
-		return CountryCode;
+		return countryCode;
 	}
 	public void setCountryCode(String countryCode) {
-		this.CountryCode = countryCode;
+		this.countryCode = countryCode;
 	}
 	public String getDistrict() {
-		return District;
+		return district;
 	}
 	public void setDistrict(String district) {
-		this.District = district;
+		this.district = district;
 	}
 	public int getPopulation() {
-		return Population;
+		return population;
 	}
 	public void setPopulation(int population) {
-		this.Population = population;
+		this.population = population;
 	}
 }

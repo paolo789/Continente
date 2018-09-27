@@ -8,18 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-Cerca città
-<form action="ricercacitta">
-<input type="text" name="cercacitta"><input type="submit">
-</form>
-<br>
+
 Aggiungi Città
+<br>
 <form action="aggiungimodifica">
-<input type="text" name="citta" placeholder="nome citta">
-<input type="text" name="countrycode" placeholder="country code">
-<input type="text" name="district" placeholder="district">
-<input type="number" name="population" placeholder="population">
-<input type="submit" value="Inserisci citta">
+<input type="submit" name="aggiungi" value="aggiungi citta">
 </form>
 <br>
 
