@@ -19,7 +19,7 @@ import it.objectmethod.continente.dao.ICityDao;
 import it.objectmethod.continente.dao.impl.CityDaoImpl;
 
 
-@WebServlet("/cancella")
+//@WebServlet("/cancella")
 public class CancellaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    

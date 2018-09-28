@@ -21,7 +21,7 @@ import it.objectmethod.continente.dao.INationDao;
 import it.objectmethod.continente.dao.impl.NationDaoImpl;
 import it.objectmethod.continente.domain.CountryBean;
 
-@WebServlet("/listanazioni")
+
 public class NazioneServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -31,9 +31,8 @@ public class NazioneServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		String continent =request.getParameter("Cont");
-		List<CountryBean> n = new ArrayList();
 		INationDao nd = new NationDaoImpl();
-		n=nd.getNationsByContinent(continent);
+		List<CountryBean> n=nd.getNationsByContinent(continent);
 		request.setAttribute("nazioni", n);
 		session.setAttribute("cont", continent);
 		request.getRequestDispatcher("ListaNazioni.jsp").forward(request, response);

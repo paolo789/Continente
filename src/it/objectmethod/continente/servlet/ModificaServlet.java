@@ -19,13 +19,10 @@ import it.objectmethod.continente.dao.impl.CityDaoImpl;
 import it.objectmethod.continente.domain.CityBean;
 
 
-@WebServlet("/modifica")
+//@WebServlet("/modifica")
 public class ModificaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/world";   
-	static final String USER = "root";
-	static final String PASS = "root";    
+	
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String citta= request.getParameter("nomecitta");

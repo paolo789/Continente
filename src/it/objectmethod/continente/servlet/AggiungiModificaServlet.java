@@ -23,7 +23,7 @@ import it.objectmethod.continente.dao.impl.NationDaoImpl;
 import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.CountryBean;;
 
-@WebServlet("/aggiungimodifica")
+//@WebServlet("/aggiungimodifica")
 public class AggiungiModificaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
