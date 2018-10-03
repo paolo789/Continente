@@ -36,6 +36,7 @@ Aggiungi Città
 	<td>
 	<form action=cancella>
 	<input type="hidden" name="identd" value=${citta.id }>
+	<input type="hidden" name="countrycode" value=${citta.countryCode }>
 	<input type="submit" name="cancella" value="cancella">
 	</form>
 	</td>

@@ -6,13 +6,76 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.springframework.jdbc.core.JdbcTemplate;
+import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;  
 import it.objectmethod.continente.config.ConnectionFactory;
 import it.objectmethod.continente.dao.ICityDao;
 import it.objectmethod.continente.domain.CityBean;
+import it.objectmethod.continente.domain.CityMapper;
 
 public class CityDaoImpl implements ICityDao {
-	public List<CityBean> getCitiesByNations(String nation){
+	
+	
+	private final String SQL_FIND_CITIES="SELECT * from world.city where countrycode=?";
+	private final String SQL_SELEZIONA_CITTA = "select * from city where ID =?";
+	private final String SQL_MODIFICA_CITTA = "update city set name=?, countrycode=?, district=?, population=? where ID=?";
+	private final String SQL_INSERT_CITTA="insert into city (Name, CountryCode, District, Population) values (?,?,?,?)";
+	private final String SQL_CANCELLA_CITTA = "delete from city where id=?";
+	private final String SQL_CERCA_CITTA = "select * from city where name like ?";
+	
+	
+	//AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("Beans.xml");
+	//JdbcTemplate jdbcTemplate = (JdbcTemplate)context.getBean("jdbcTemplate");
+	
+	private DataSource dataSource;
+	private JdbcTemplate jdbcTemplate;
+	   
+	   public void setDataSource(DataSource dataSource) {
+	      this.dataSource = dataSource;
+	      this.jdbcTemplate = new JdbcTemplate(dataSource);
+	   }
+	
+	
+	public List<CityBean> getCitiesByNations(String countryCode) {
+		return jdbcTemplate.query(SQL_FIND_CITIES,new Object[] { countryCode }, new CityMapper());
+	}
+	
+	
+	public CityBean selezionaCitta(int ident) {
+		return jdbcTemplate.queryForObject(SQL_SELEZIONA_CITTA,new Object[] { ident }, new CityMapper());
+	}
+	
+	public void modificaCitta(CityBean cb) {
+		jdbcTemplate.update(SQL_MODIFICA_CITTA, cb.getName(), cb.getCountryCode(), cb.getDistrict(), cb.getPopulation(), cb.getId());
+	}
+	
+	public void insertCity(CityBean cb) {
+		jdbcTemplate.update(SQL_INSERT_CITTA, cb.getName(), cb.getCountryCode(), cb.getDistrict(), cb.getPopulation());
+	}
+	
+	public void cancellaCitta(int ident) {
+		jdbcTemplate.update(SQL_CANCELLA_CITTA, ident);
+	}
+	
+	public List<CityBean> cercaCitta(String cercaCitta) {
+		return jdbcTemplate.query(SQL_CERCA_CITTA, new Object[] {cercaCitta+'%'}, new CityMapper());
+	}
+	
+	
+	
+	
+	
+	
+	/*public List<CityBean> getCitiesByNations(String nation){
 		List<CityBean> v = new ArrayList();
 		try {
 			Connection conn = ConnectionFactory.getConnection();
@@ -39,9 +102,12 @@ public class CityDaoImpl implements ICityDao {
 		}
 
 		return v;
-	}
+	} */
 	
-	public CityBean selezionaCitta(int ident) {
+	
+	
+	
+/*	public CityBean selezionaCitta(int ident) {
 		//List<CityBean> v = new ArrayList();
 		CityBean cb = null;
 		try {
@@ -75,9 +141,9 @@ public class CityDaoImpl implements ICityDao {
 			e.printStackTrace();
 		}
 		return cb;
-	}
+	} */ 
 	
-	public void modificaCitta(CityBean cb) {
+/*	public void modificaCitta(CityBean cb) {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			String sql = "update city set name=?, countrycode=?, district=?, population=? where ID=?";
@@ -93,9 +159,9 @@ public class CityDaoImpl implements ICityDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}
+	} */
 	
-	public void insertCity(CityBean cb) {
+	/*public void insertCity(CityBean cb) {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			
@@ -106,20 +172,17 @@ public class CityDaoImpl implements ICityDao {
 			stmt.setString(3, cb.getDistrict());
 			stmt.setInt(4, cb.getPopulation());
 			stmt.executeUpdate();
-				/*
-				 * TODO Non settare l'id e usare i prapared statements, non comporre la stringa altrimenti si creano
-				 * problemi di SQLInjection
-				 */
+				
 				
 			stmt.close();
 			conn.close();
 		} catch (SQLException e) {
 		e.printStackTrace();
 		}
-	}
+	} */
 	
 	
-	public void cancellaCitta(int ident) {
+/*	public void cancellaCitta(int ident) {
 		try {
 			Connection conn = ConnectionFactory.getConnection();
 			String sql;
@@ -132,10 +195,10 @@ public class CityDaoImpl implements ICityDao {
 		} catch (SQLException e) {
 		  e.printStackTrace();
 		}
-	}
+	} */
 	
 	
-	public List<CityBean> cercaCitta(String cercaCitta) {
+/*	public List<CityBean> cercaCitta(String cercaCitta) {
 		List<CityBean> v= new ArrayList();
 		try {
 			Connection conn = ConnectionFactory.getConnection();
@@ -165,7 +228,7 @@ public class CityDaoImpl implements ICityDao {
 			e.printStackTrace();
 		}
 		return v;
-	}
+	} */
 	
 	
 	

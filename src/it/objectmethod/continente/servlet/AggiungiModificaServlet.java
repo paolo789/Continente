@@ -14,6 +14,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
 
 
 import it.objectmethod.continente.dao.ICityDao;
@@ -46,6 +48,7 @@ public class AggiungiModificaServlet extends HttpServlet {
 		
 		if (ident != 0) {
 			ICityDao iCityDao = new CityDaoImpl();
+			
 			citta = iCityDao.selezionaCitta(ident);
 			request.setAttribute("citta",citta );
 		}

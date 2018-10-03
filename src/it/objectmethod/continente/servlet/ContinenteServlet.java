@@ -11,6 +11,7 @@ import java.util.List;
 
 import it.objectmethod.continente.dao.INationDao;
 import it.objectmethod.continente.dao.impl.NationDaoImpl;
+import it.objectmethod.continente.domain.CountryBean;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ContinenteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<String> v = new ArrayList();
+		List<CountryBean> v = new ArrayList();
 		INationDao cd = new NationDaoImpl();
 		v=cd.getContinent();
 		request.setAttribute("continenti", v);

@@ -6,15 +6,47 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
 import it.objectmethod.continente.config.ConnectionFactory;
 import it.objectmethod.continente.dao.INationDao;
 import it.objectmethod.continente.domain.CityBean;
+import it.objectmethod.continente.domain.CityMapper;
+import it.objectmethod.continente.domain.CodeMapper;
 import it.objectmethod.continente.domain.CountryBean;
+import it.objectmethod.continente.domain.CountryMapper;
+import it.objectmethod.continente.domain.NationMapper;
 
 
 public class NationDaoImpl implements INationDao {
 	
-	public List<String> getContinent(){
+	final static String SQL_GET_CONTINENT="SELECT distinct continent FROM world.country";
+	final static String SQL_GET_NATION="SELECT * FROM world.country where continent=?";
+	final static String SQL_GET_COUNTRY="select distinct code,name from country";
+	
+	private DataSource dataSource;
+	private JdbcTemplate jdbcTemplate;
+	   
+	   public void setDataSource(DataSource dataSource) {
+	      this.dataSource = dataSource;
+	      this.jdbcTemplate = new JdbcTemplate(dataSource);
+	   }
+	   
+	   public List<CountryBean> getContinent() {
+			return jdbcTemplate.query(SQL_GET_CONTINENT, new CountryMapper());
+		}
+	   
+	   public List<CountryBean> getNationsByContinent(String continent){
+		    return jdbcTemplate.query(SQL_GET_NATION, new Object[] { continent }, new NationMapper());
+	   }
+	   
+	   public List<CountryBean> listaCountry() {
+		   	return jdbcTemplate.query(SQL_GET_COUNTRY, new CodeMapper());
+	   }
+	   
+/*	public List<String> getContinent(){
 		List<String> v = new ArrayList();
 		try {
 			Connection conn = ConnectionFactory.getConnection();
@@ -35,9 +67,9 @@ public class NationDaoImpl implements INationDao {
 		}
 
 		return v;
-	}
+	} */
 	
-	public List<CountryBean> getNationsByContinent(String continent){
+/*	public List<CountryBean> getNationsByContinent(String continent){
 		List<CountryBean> v = new ArrayList();
 		try {
 			Connection conn = ConnectionFactory.getConnection();
@@ -63,9 +95,9 @@ public class NationDaoImpl implements INationDao {
 		}
 
 		return v;
-	}
+	} */
 
-	@Override
+/*	@Override
 	public List<CountryBean> listaCountry() {
 		List<CountryBean> v= new ArrayList<CountryBean>();
 		try {
@@ -89,5 +121,5 @@ public class NationDaoImpl implements INationDao {
 			e.printStackTrace();
 		}
 		return v;
-		}
+		} */
 }

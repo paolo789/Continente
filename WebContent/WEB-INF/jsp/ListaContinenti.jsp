@@ -14,7 +14,7 @@ Cerca città
 </form>
 <br>
 <c:forEach items="${continenti}" var="continente">
-    <p><a href ="listanazioni?Cont=${continente}">${continente}</a></p>
+    <p><a href ="listanazioni?Cont=${continente.continent}">${continente.continent}</a></p>
 </c:forEach>
 </body>
 </html>
