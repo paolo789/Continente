@@ -11,7 +11,7 @@ Usando Spring realizzare una webapp che permetta di:
 
 - Ricercare Attori per nome;
 - Ricercare Film per nome;
-- Ricercare Film per genere (usare SELECT);
+- Ricercare Film per genere (usare SELECT tendina);
 
 - Mostrare Lista film in cui ha partecipato un attore al click sull'attore;
 - Mostrare lista attori che hanno partecipato al film al click sul film;

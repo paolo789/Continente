@@ -32,7 +32,7 @@
    </bean>
    
    <bean id = "nd" 
-      class = "it.objectmethod.continente.dao.impl.NationDaoImpl">
+      class = "it.objectmethod.continente.dao.impl.CountryDaoImpl">
       <property name = "dataSource" ref = "dataSource" />    
    </bean>
  

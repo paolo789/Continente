@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -13,19 +14,20 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.objectmethod.continente.dao.impl.NationDaoImpl;
+import it.objectmethod.continente.dao.ICountryDao;
+import it.objectmethod.continente.dao.impl.CountryDaoImpl;
 import it.objectmethod.continente.domain.CountryBean;
 
 @Controller
 public class CountryController {
-	ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-	NationDaoImpl cd = (NationDaoImpl)context.getBean("nd");
+	@Autowired
+	ICountryDao cd; 
 	
 	
 	@RequestMapping("/listacontinenti")
 	public String continents(ModelMap map) throws SQLException{
-		//INationDao cd = new NationDaoImpl();
-		List<CountryBean> continentList=cd.getContinent();
+		//cd = new NationDaoImpl();
+		List<String> continentList=cd.getContinent();
 		map.addAttribute("continenti", continentList);
 		return "ListaContinenti";
 	}

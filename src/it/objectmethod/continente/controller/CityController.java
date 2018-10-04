@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -11,21 +12,28 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import it.objectmethod.continente.dao.ICityDao;
+import it.objectmethod.continente.dao.ICountryDao;
 import it.objectmethod.continente.dao.impl.CityDaoImpl;
-import it.objectmethod.continente.dao.impl.NationDaoImpl;
+import it.objectmethod.continente.dao.impl.CountryDaoImpl;
 import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.CountryBean;
 
 @Controller
 public class CityController {
-	ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+	/*ApplicationContext context = new ClassPathXmlApplicationContext("/WEB-INF/mondo-servlet.xml");
 	CityDaoImpl cd = (CityDaoImpl)context.getBean("cd");
-	NationDaoImpl nd=(NationDaoImpl)context.getBean("nd");
+	NationDaoImpl nd=(NationDaoImpl)context.getBean("nd"); */
+	
+	@Autowired
+	ICityDao cd;
+	
+	@Autowired
+	ICountryDao nd;
 	
 	@RequestMapping("/listacitta")
 	public String cities(ModelMap map,@RequestParam("nation") String nation) {
 		//ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-		CityDaoImpl cd = (CityDaoImpl)context.getBean("cd");
 		//ICityDao cd = new CityDaoImpl();
 		List<CityBean> v=cd.getCitiesByNations(nation);
 		map.addAttribute("citta", v);

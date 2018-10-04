@@ -6,7 +6,7 @@ import java.util.List;
 import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.CountryBean;
 
-public interface INationDao {
+public interface ICountryDao {
 	public List<String> getContinent();
 	public List<CountryBean> getNationsByContinent(String continent);
 	public List<CountryBean> listaCountry();

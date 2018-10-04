@@ -17,7 +17,6 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;  
-import it.objectmethod.continente.config.ConnectionFactory;
 import it.objectmethod.continente.dao.ICityDao;
 import it.objectmethod.continente.domain.CityBean;
 import it.objectmethod.continente.domain.mapper.CityMapper;
