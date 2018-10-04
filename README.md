@@ -1,9 +1,17 @@
 # TODO
 
-- Rimuovere i dao inutili e accorpare tutto sotto i 2 dao delle entitÃ ;
-- Correggere la funzionalitÃ  di insert e usare i PreparedStatements ovunque;
-- Completare metodo per modifica cittÃ  (non vengono salvate tutte le info);
-- Correggere i nomi delle variabili che devono iniziare SEMPRE per lettera minuscola (vedi i bean);
-- Per l'inserimento/modifica usare 1 sola pagina jsp e 2 servlet (una per caricare la pagina con il form e 1 per effettuare la modifica/inserimento della city), rimuovere quindi il form dalla pagina listacittà;
-- Cerca città da spostare nella home page (continenti);
-- quando devo scegliere la country, devo avere un menu a tendina.
+- Dare omogeneità al codice, chiamare le classi e le entità con nomi corrispondenti.
+- Rimuovere CodeMapper e CountryMapper ---> Nel primo caso ritorniamo sempre una Nation completa, nel secondo caso invece dobbiamo ritornare una semplice lista di String.
+
+
+# NUOVO TASK
+
+Creare NUOVO PROGETTO WEB basato sul database Sakila.
+Usando Spring realizzare una webapp che permetta di:
+
+- Ricercare Attori per nome;
+- Ricercare Film per nome;
+- Ricercare Film per genere (usare SELECT);
+
+- Mostrare Lista film in cui ha partecipato un attore al click sull'attore;
+- Mostrare lista attori che hanno partecipato al film al click sul film;
