@@ -20,7 +20,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import it.objectmethod.continente.config.ConnectionFactory;
 import it.objectmethod.continente.dao.ICityDao;
 import it.objectmethod.continente.domain.CityBean;
-import it.objectmethod.continente.domain.CityMapper;
+import it.objectmethod.continente.domain.mapper.CityMapper;
 
 public class CityDaoImpl implements ICityDao {
 	
